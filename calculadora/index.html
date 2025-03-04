@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: brown;
+            display: flex;
+            justify-content: center;
+        }
+
+        .body-calc{
+            margin: 100px;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.95);
+            height: 400px;
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 5px;
+        }
+
+        h1{
+            text-align: center;
+            color: white;
+        }
+
+        .body-response{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 10px;
+        }
+
+        .response{
+            color: gray;
+            border: 1px solid black;
+            background-color: rgba(255, 255, 255,0.9);
+            text-align: right;
+            padding-right: 10px;
+            padding-top: 10px;
+            width: 90%;
+            height: 40px;
+            font-size: 24px;
+            overflow-wrap: break-word;
+        }
+
+        .body-response button{
+            width: 20px;
+            height: 20px;
+        }
+
+        .functions{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .btn{
+            width: 90px;
+            height: 40px;
+            margin: 3px;
+        }
+
+        @media screen and (max-width: 1300px) {
+            .body-calc{
+                flex-direction: column;
+                height: 450px;
+                width: 60%;
+            }
+
+            h1{
+                margin-bottom: -30px;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+           
+            .body-calc{
+                height: 400px;
+                width: 90%;
+                margin: 20px;
+                padding: 0;
+            }
+
+            h1{
+                margin-bottom: -60px;
+                font-size: 22px;
+            }
+            .body-response{
+                justify-content: center;
+            }
+            .response{
+                width: 70%;
+            }
+
+            .btn{
+                width: 70px;
+                height: 30px;
+            
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="body-calc">
+            <h1>Scientific Calculator</h1>
+        <div>
+            <div class="body-response">
+                <p class="response"></p>
+                <button>^</button>
+            </div>
+            <div class="functions">
+                <button class="btn">SQRT</button>
+                <button class="btn">PI</button>
+                <button class="btn">^</button>
+                <button class="btn">!</button>
+                <button class="btn" id="deleteAll">AC</button>
+                <button class="btn">()</button>
+                <button class="btn">%</button>
+                <button class="btn" id="btn">/</button>
+                <button class="btn" id="btn">7</button>
+                <button class="btn" id="btn">8</button>
+                <button class="btn" id="btn">9</button>
+                <button class="btn" id="btn">X</button>
+                <button class="btn" id="btn">4</button>
+                <button class="btn" id="btn">5</button>
+                <button class="btn" id="btn">6</button>
+                <button class="btn" id="btn">-</button>
+                <button class="btn" id="btn">1</button>
+                <button class="btn" id="btn">2</button>
+                <button class="btn" id="btn">3</button>
+                <button class="btn" id="btn">+</button>
+                <button class="btn" id="btn">0</button>
+                <button class="btn" id="btn">.</button>
+                <button class="btn" id="toDelete"><</button>
+                <button class="btn" id="makeCal">=</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let response = document.querySelector('.response')
+        const btn = [...document.querySelectorAll('#btn')]
+        makeCalc = document.querySelector('#makeCal')
+        let DeleteAll = document.querySelector('#deleteAll')
+        let toDelete = document.querySelector('#toDelete') 
+        
+        btn.map((e)=>{
+            e.addEventListener('click',(e)=>{
+                if(e.target.textContent=='X')
+                    response.textContent+='*'
+                else
+                    response.innerText += e.target.textContent
+            })
+        })
+     
+        makeCal.addEventListener('click',()=>{
+        if(response.innerText=="")
+            response.innerText=" "
+        else
+            response.innerText=eval(response.innerText)
+        })
+        
+        
+        toDelete.addEventListener('click',()=>{
+          response.textContent=response.textContent.substring(0, response.textContent.length -1)
+        
+        })
+        
+        DeleteAll.addEventListener('click',()=>{
+            response.innerText ="" 
+        })
+        
+    </script>
+</body>
+</html>
