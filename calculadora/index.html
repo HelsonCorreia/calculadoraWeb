@@ -46,7 +46,7 @@
             padding-right: 10px;
             padding-top: 10px;
             width: 90%;
-            height: 40px;
+            min-height: 40px;
             font-size: 24px;
             overflow-wrap: break-word;
         }
@@ -116,13 +116,13 @@
                 <button>^</button>
             </div>
             <div class="functions">
-                <button class="btn">SQRT</button>
-                <button class="btn">PI</button>
-                <button class="btn">^</button>
-                <button class="btn">!</button>
                 <button class="btn" id="deleteAll">AC</button>
-                <button class="btn">()</button>
-                <button class="btn">%</button>
+                <button class="btn" id="btn">(</button>
+                <button class="btn" id="btn">)</button>
+                <button class="btn" id="toDelete"><</button>
+                <button class="btn" id="btn">^</button>
+                <button class="btn">PI</button>
+                <button class="btn" id="btn">%</button>
                 <button class="btn" id="btn">/</button>
                 <button class="btn" id="btn">7</button>
                 <button class="btn" id="btn">8</button>
@@ -137,8 +137,8 @@
                 <button class="btn" id="btn">3</button>
                 <button class="btn" id="btn">+</button>
                 <button class="btn" id="btn">0</button>
+                <button class="btn" id="btn">00</button>
                 <button class="btn" id="btn">.</button>
-                <button class="btn" id="toDelete"><</button>
                 <button class="btn" id="makeCal">=</button>
             </div>
         </div>
@@ -152,18 +152,34 @@
         
         btn.map((e)=>{
             e.addEventListener('click',(e)=>{
-                if(e.target.textContent=='X')
+                if(e.target.textContent=='X'){
                     response.textContent+='*'
+                }
+                else if(e.target.textContent=='^'){
+                    response.textContent+='**'
+                }
+                else if(e.target.textContent=='PI'){
+                    response.textContent+='3.14'
+                }
+                else if(e.target.textContent=='%'){
+                    response.textContent+='/100'
+                }
+                
                 else
                     response.innerText += e.target.textContent
+                    
             })
         })
      
         makeCal.addEventListener('click',()=>{
+            let res
         if(response.innerText=="")
             response.innerText=" "
-        else
-            response.innerText=eval(response.innerText)
+        else{
+            res = Number(eval(response.innerText))
+            response.innerText = res
+        }
+           
         })
         
         
